@@ -1,0 +1,58 @@
+
+## Task 4. Functions
+
+```{r}
+library(dplyr)
+```
+
+
+Create the next functions and test them with a few different arguments:
+
+1. Function `above(x, n)` which returns all items of vector `x` that more than `n`. By default `n = 10`. For instance, `above(c(3, 5, 6), 5)` returns `6`.
+
+```{r}
+above <- function(x, n=10) {
+  x[x > n]
+}
+```
+
+
+2. Function `my_ifelse(x, exp, n)` which compares all items of vector `x` with `n` using expression `exp`. `exp` can be `<`, `<=`, `>`, `=>`, `==`. For instance, `exp(c(3, 5, 6), "=>", 5)` returns `5, 6`.
+
+```{r}
+my_ifelse <- function(x, exp, n=20) {
+  if (exp == "<") { 
+    res <- x[x < n]
+  } else if (exp == "<=") {
+    res <- x[x <= n]
+  } else if (exp == ">") {
+    res <- x[x > n]
+  } else if (exp == ">="){
+    res <- x[x >= n]
+  }else if (exp == "=="){
+    res <- x[x == n]
+  }else {
+    res <- x
+  }
+  
+  res
+}
+my_ifelse(10:30, "<", 20)
+my_ifelse(10:30, "<=", 20)
+my_ifelse(10:30, ">", 20)
+my_ifelse(10:30, ">=", 20)
+my_ifelse(10:30, "==", 20)
+```
+
+
+3. Function `my_columnmean(df, removeNA)` that returns mean value for each column of data frame or matrix `df`. Logical argument `removeNA` set whether remove NA values or not. By default `removeNA = True`. Use loop `for` of `while` for the function.
+
+```{r}
+my_columnmean <- function(df, removeNA){
+    apply(df, 2, mean, na.rm = removeNA)
+}
+
+my_columnmean(airquality, removeNA = TRUE)
+```
+
+
